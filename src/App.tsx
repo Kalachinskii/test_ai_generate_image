@@ -32,6 +32,7 @@ export function App() {
                             <i className="fa-solid fa-dice"></i>
                         </button>
                     </div>
+
                     {/* promt action/buttons */}
                     <div className={styles.promtActions}>
                         <div className={styles.selectWrapper}>
@@ -84,6 +85,58 @@ export function App() {
                             <i className="fa-solid fa-wand-sparkles"></i>
                             Сгенерировать
                         </button>
+                    </div>
+
+                    {/* Result Galery Grid */}
+                    <div className={styles.galleryGrid}>
+                        <div className={styles.imgCard}>
+                            <img
+                                className={styles.resultImg}
+                                src="/test.jpeg"
+                                alt="Сгенерировання картинка"
+                            />
+                            <div className={styles.imgOverlay}>
+                                <button className={styles.imgDownloadBtn}>
+                                    <i className="fa-solid fa-download"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div className={styles.imgCard}>
+                            <img
+                                className={styles.resultImg}
+                                src="/test.jpeg"
+                                alt="Сгенерировання картинка"
+                            />
+                            <div className={styles.imgOverlay}>
+                                <button className={styles.imgDownloadBtn}>
+                                    <i className="fa-solid fa-download"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div className={styles.imgCard}>
+                            <img
+                                className={styles.resultImg}
+                                src="/test.jpeg"
+                                alt="Сгенерировання картинка"
+                            />
+                            <div className={styles.imgOverlay}>
+                                <button className={styles.imgDownloadBtn}>
+                                    <i className="fa-solid fa-download"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div className={styles.imgCard}>
+                            <img
+                                className={styles.resultImg}
+                                src="/test.jpeg"
+                                alt="Сгенерировання картинка"
+                            />
+                            <div className={styles.imgOverlay}>
+                                <button className={styles.imgDownloadBtn}>
+                                    <i className="fa-solid fa-download"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
