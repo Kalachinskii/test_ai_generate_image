@@ -17,18 +17,18 @@ export function App() {
                 </button>
             </div>
 
-            <div className="main-content">
+            <div className={styles.mainContent}>
                 <form action="#" className="promt-form">
                     {/* promt container */}
-                    <div className="promt-container">
+                    <div className={styles.promtContainer}>
                         <textarea
                             name=""
                             placeholder="Опиши детально картинку"
-                            className="promt-input"
+                            className={styles.promtInput}
                             required
                             autoFocus
                         ></textarea>
-                        <button type="button" className="promt-btn">
+                        <button type="button" className={styles.promtBtn}>
                             <i className="fa-solid fa-dice"></i>
                         </button>
 
