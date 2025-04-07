@@ -5,15 +5,17 @@ export function App() {
         <div className={styles.container}>
             {/* header */}
             <div className={styles.header}>
-                <div className={styles.logo}>
-                    <i className={"fa-solid fa-wand-magic-sparkles"}></i>
+                <div className={styles.logoWrapper}>
+                    <div className={styles.logo}>
+                        <i className={"fa-solid fa-wand-magic-sparkles"}></i>
+                    </div>
+                    <h1 className={styles.title}>Генератор картинок</h1>
                 </div>
-                <h1>Генератор картинок</h1>
-            </div>
 
-            <button className="theme-toggle">
-                <i className="fa-solid fa-moon"></i>
-            </button>
+                <button className={styles.themeToggle}>
+                    <i className="fa-solid fa-moon"></i>
+                </button>
+            </div>
 
             <div className="main-content">
                 <form action="#" className="promt-form">

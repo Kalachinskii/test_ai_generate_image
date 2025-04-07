@@ -1,14 +1,29 @@
+/* import Google Fonts - Inter */
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
 #root {
-    --text-color: #000;
+    --color-text: #09090e;
+    --color-primary: #5c56e1;
+    --color-primary-dark: #5b21b6;
+    --color-card: #fff;
+    --color-input: #f1f1ff;
+    --color-placeholder: #5c5a87;
+    --color-border: #d4d4ed;
+    --color-gradient: linear-gradient(135deg, #5c56e1, #8b5cf6);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Inter", sans-serif;
 }
 
-a {
-    color: var(--text-color);
-    text-decoration: none;
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(#e9e9ff, #c8c7ff);
+    padding: 15px;
 }
