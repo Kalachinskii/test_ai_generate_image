@@ -33,11 +33,14 @@ export function App() {
                         </button>
 
                         {/* promt action/buttons */}
-                        <div className="promt-actions">
-                            <div className="select-wrapper">
-                                <select className="custom-select" required>
+                        <div className={styles.promtActions}>
+                            <div className={styles.selectWrapper}>
+                                <select
+                                    className={styles.customSelect}
+                                    required
+                                >
                                     <option value="" selected disabled>
-                                        Select Model
+                                        Выберети модель
                                     </option>
                                     <option value="black-forest-labs/FLUX.1-dev">
                                         FLUX.1-dev
@@ -57,10 +60,13 @@ export function App() {
                                 </select>
                             </div>
 
-                            <div className="select-wrapper">
-                                <select className="custom-select" required>
+                            <div className={styles.selectWrapper}>
+                                <select
+                                    className={styles.customSelect}
+                                    required
+                                >
                                     <option value="" selected disabled>
-                                        Колличество картинок
+                                        Колличество
                                     </option>
                                     <option value="1">1 картинка</option>
                                     <option value="2">2 картинка</option>
@@ -69,10 +75,13 @@ export function App() {
                                 </select>
                             </div>
 
-                            <div className="select-wrapper">
-                                <select className="custom-select" required>
+                            <div className={styles.selectWrapper}>
+                                <select
+                                    className={styles.customSelect}
+                                    required
+                                >
                                     <option value="" selected disabled>
-                                        Выберети размер
+                                        Размер
                                     </option>
                                     <option value="1/1">Квадрат (1:1)</option>
                                     <option value="16/9">Пеизаж (16:9)</option>
@@ -80,7 +89,10 @@ export function App() {
                                 </select>
                             </div>
 
-                            <button type="submit" className="generate-btn">
+                            <button
+                                type="submit"
+                                className={styles.generateBtn}
+                            >
                                 <i className="fa-solid fa-wand-sparkles"></i>
                                 Сгенерировать
                             </button>
