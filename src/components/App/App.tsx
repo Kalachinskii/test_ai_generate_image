@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import styles from "./App.module.css";
 import { Image } from "../Image/Image";
-// import { EXAMLE_PROMPTS  from "../../constants/exa"
 import { EXAMLE_PROMPTS } from "../../constants/examlePrompts";
+import { ModelsSelect } from "../ModelsSelect/ModelsSelect";
+import { ImageCountSelect } from "../ImageCountSelect/ImageCountSelect";
+import { WrapperSelect } from "../WrapperSelect/WrapperSelect";
+// import { ImageCountSelect } from "../ImageCountSelect/ImageCountSelect";
 
 export function App() {
     const [themeToggle, setThemeToggle] = useState<string>(() => {
@@ -112,18 +115,6 @@ export function App() {
         setPrompt(e.target.value);
     };
 
-    const handleModelChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setModelSelect(event.target.value);
-    };
-
-    const handleCountChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setCountSelect(Number(event.target.value));
-    };
-
-    const handleSizeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setSizeSelect(event.target.value);
-    };
-
     return (
         <div className={styles.container}>
             {/* header */}
@@ -178,66 +169,23 @@ export function App() {
 
                     {/* prompt action/buttons */}
                     <div className={styles.promptActions}>
-                        <div className={styles.selectWrapper}>
-                            <select
-                                name="modelSelect"
-                                className={styles.customSelect}
-                                required
-                                value={modelSelect}
-                                onChange={handleModelChange}
-                            >
-                                <option value="" disabled>
-                                    Выберети модель
-                                </option>
-                                <option value="black-forest-labs/FLUX.1-schnell">
-                                    FLUX.1-schnell
-                                </option>
-                                <option value="black-forest-labs/FLUX.1-dev">
-                                    FLUX.1-dev
-                                </option>
-                                <option value="stabilityai/stable-diffusion-xl-base-1.0">
-                                    SD-XL 1.0-base Model Card
-                                </option>
-                            </select>
-                        </div>
+                        <ModelsSelect
+                            modelSelect={modelSelect}
+                            setModelSelect={setModelSelect}
+                            selectName={"modelSelect"}
+                        />
 
-                        <div className={styles.selectWrapper}>
-                            <select
-                                name="countSelect"
-                                className={styles.customSelect}
-                                required
-                                value={countSelect}
-                                onChange={handleCountChange}
-                            >
-                                <option value={0} disabled>
-                                    Колличество
-                                </option>
-                                <option value={1}>1 картинка</option>
-                                <option value={2}>2 картинка</option>
-                                <option value={3}>3 картинка</option>
-                                <option value={4}>4 картинка</option>
-                            </select>
-                        </div>
+                        <ImageCountSelect
+                            countSelect={countSelect}
+                            setCountSelect={setCountSelect}
+                            selectName={"countSelect"}
+                        />
 
-                        <div className={styles.selectWrapper}>
-                            <select
-                                name="sizeSelect"
-                                className={styles.customSelect}
-                                required
-                                value={sizeSelect}
-                                onChange={handleSizeChange}
-                            >
-                                <option value="" disabled>
-                                    Размер
-                                </option>
-                                {/* 512 x 512 */}
-                                <option value="1/1">Квадрат (1:1)</option>
-                                {/* 672 x 384 */}
-                                <option value="16/9">Пеизаж (16:9)</option>
-                                {/* 384 x 672 */}
-                                <option value="9/16">Портрет (9:16)</option>
-                            </select>
-                        </div>
+                        <WrapperSelect
+                            sizeSelect={sizeSelect}
+                            setSizeSelect={setSizeSelect}
+                            selectName={"sizeSelect"}
+                        />
 
                         <button type="submit" className={styles.generateBtn}>
                             <i
