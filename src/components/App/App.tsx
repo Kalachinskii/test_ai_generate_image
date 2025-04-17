@@ -1,13 +1,17 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "./App.module.css";
 import { Image } from "../Image/Image";
 import { EXAMLE_PROMPTS } from "../../constants/examlePrompts";
 import { Select } from "../Select/Select";
+import { Button } from "../Button/Button";
+import { sizeSelectData } from "../../constants/sizeSelectData";
+import { countSelectData } from "../../constants/countSelectData";
+import { modelSelectData } from "../../constants/modelSelectData";
+import { getImageDimensions } from "../../utils/imageUtils";
+import { Header } from "../Header/Header";
+import { Textaria } from "../Textarea/Textaria";
 
 export function App() {
-    const [themeToggle, setThemeToggle] = useState<string>(() => {
-        return localStorage.getItem("theme") || "light";
-    });
     const [modelSelect, setModelSelect] = useState<string>("");
     const [countSelect, setCountSelect] = useState<string>("0");
     const [sizeSelect, setSizeSelect] = useState<string>("");
@@ -22,18 +26,6 @@ export function App() {
         setPrompt(randomPrompt);
     };
 
-    // тема - старт страницы
-    useEffect(() => {
-        document.body.classList.toggle("darkTheme", themeToggle === "dark");
-    }, [themeToggle]);
-
-    // тема - кнопка
-    const toggleTheme = () => {
-        const newTheme = themeToggle === "light" ? "dark" : "light";
-        setThemeToggle(newTheme);
-        localStorage.setItem("theme", newTheme);
-    };
-
     const requestApi = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
@@ -41,20 +33,6 @@ export function App() {
         if (formProps instanceof Object) {
             generateImage(formProps);
         }
-    };
-
-    // размер картинки
-    const getImageDimensions = (aspectRatio: string, baseSize = 512) => {
-        const [width, height] = aspectRatio.split("/").map(Number);
-        const scaleFactor = baseSize / Math.sqrt(width * height);
-
-        let calculatedWidth = Math.round(width * scaleFactor);
-        let calculatedHeight = Math.round(height * scaleFactor);
-
-        calculatedWidth = Math.floor(calculatedWidth / 16) * 16;
-        calculatedHeight = Math.floor(calculatedHeight / 16) * 16;
-
-        return { width: calculatedWidth, height: calculatedHeight };
     };
 
     const generateImage = async ({ ...props }) => {
@@ -108,60 +86,32 @@ export function App() {
         setLoading(false);
     };
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        setPrompt(e.target.value);
-    };
-
     return (
         <div className={styles.container}>
             {/* header */}
-            <div className={styles.header}>
-                <div className={styles.logoWrapper}>
-                    <div className={styles.logo}>
-                        <i
-                            className={`${"fa-solid fa-wand-magic-sparkles"} ${
-                                styles.logoIcon
-                            }`}
-                        ></i>
-                    </div>
-                    <h1 className={styles.title}>Генератор картинок</h1>
-                </div>
-
-                <button onClick={toggleTheme} className={styles.themeToggle}>
-                    <i
-                        className={`${
-                            themeToggle == "light"
-                                ? `${"fa-solid fa-sun"} ${styles.sun}`
-                                : `${"fa-solid fa-moon"} ${styles.moon}`
-                        } ${styles.logoIcon}`}
-                    ></i>
-                </button>
-            </div>
-
+            <Header />
             <div className={styles.mainContent}>
                 <form onSubmit={requestApi} className="prompt-form">
                     {/* prompt container */}
                     <div className={styles.promptContainer}>
-                        <textarea
+                        <Textaria
                             name="promptInput"
-                            placeholder="Опиши детально картинку"
-                            className={styles.promptInput}
-                            required
-                            autoFocus
-                            value={prompt}
-                            onChange={handleInputChange}
-                        ></textarea>
-                        <button
-                            onClick={() => generatePrompt()}
-                            type="button"
+                            placeholderValue="Опиши детально картинку"
+                            setPrompt={setPrompt}
+                            prompt={prompt}
+                        />
+
+                        <Button
+                            func={generatePrompt}
                             className={styles.promptBtn}
                         >
                             <i
-                                className={`${"fa-solid fa-dice"} ${
-                                    styles.logoIcon
-                                }`}
+                                className={`
+                                    ${"fa-solid fa-dice"} 
+                                    ${styles.logoIcon}
+                                `}
                             ></i>
-                        </button>
+                        </Button>
                     </div>
 
                     {/* prompt action/buttons */}
@@ -170,56 +120,31 @@ export function App() {
                             setSelect={setModelSelect}
                             value={modelSelect}
                             selectName={"modelSelect"}
-                            data={[
-                                { value: "", title: "Выберети модель" },
-                                {
-                                    value: "black-forest-labs/FLUX.1-schnell",
-                                    title: "FLUX.1-schnell",
-                                },
-                                {
-                                    value: "black-forest-labs/FLUX.1-dev",
-                                    title: "FLUX.1-dev",
-                                },
-                                {
-                                    value: "stabilityai/stable-diffusion-xl-base-1.0",
-                                    title: "D-XL 1.0-base Model Card",
-                                },
-                            ]}
+                            data={modelSelectData}
                         />
 
                         <Select
                             setSelect={setCountSelect}
                             value={countSelect}
                             selectName={"countSelect"}
-                            data={[
-                                { value: "0", title: "Колличество" },
-                                { value: "1", title: "1 картинка" },
-                                { value: "2", title: "2 картинки" },
-                                { value: "3", title: "3 картинки" },
-                                { value: "4", title: "4 картинки" },
-                            ]}
+                            data={countSelectData}
                         />
 
                         <Select
                             setSelect={setSizeSelect}
                             value={sizeSelect}
                             selectName={"sizeSelect"}
-                            data={[
-                                { value: "", title: "Размер" },
-                                { value: "1/1", title: "Квадрат (1/1)" },
-                                { value: "16/9", title: "Пеизаж (16/9)" },
-                                { value: "9/16", title: "Портрет (9/16)" },
-                            ]}
+                            data={sizeSelectData}
                         />
 
-                        <button type="submit" className={styles.generateBtn}>
+                        <Button type="submit" className={styles.generateBtn}>
                             <i
                                 className={`${"fa-solid fa-wand-sparkles"} ${
                                     styles.logoIcon
                                 }`}
                             ></i>
                             Сгенерировать
-                        </button>
+                        </Button>
                     </div>
 
                     {/* Result Galery Grid */}

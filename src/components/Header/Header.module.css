@@ -1,0 +1,70 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logoWrapper {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+}
+
+.logo {
+    height: 55px;
+    width: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    color: #fff;
+    font-size: 1.35rem;
+    flex-shrink: 0;
+    background: var(--color-gradient);
+}
+
+.logoIcon {
+    background-color: var(--color-bacground-icon);
+}
+
+.title {
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--color-text);
+}
+
+.sun {
+    color: var(--color-primary);
+}
+
+.moon {
+    color: #e0e0e0;
+}
+
+.themeToggle {
+    height: 43px;
+    width: 43px;
+    border-radius: 50%;
+    font-size: 1.05rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(---color-placeholder);
+    background: var(--color-input);
+    border: 1px solid var(--color-border);
+    transition: all 0.3s ease;
+}
+
+.themeToggle:hover {
+    color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.themeToggle:hover .moon {
+    color: #fff;
+}
+
+.themeToggle:hover .sun {
+    color: #463cff;
+}
