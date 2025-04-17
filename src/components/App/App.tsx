@@ -2,17 +2,14 @@ import { useEffect, useState } from "react";
 import styles from "./App.module.css";
 import { Image } from "../Image/Image";
 import { EXAMLE_PROMPTS } from "../../constants/examlePrompts";
-import { ModelsSelect } from "../ModelsSelect/ModelsSelect";
-import { ImageCountSelect } from "../ImageCountSelect/ImageCountSelect";
-import { WrapperSelect } from "../WrapperSelect/WrapperSelect";
-// import { ImageCountSelect } from "../ImageCountSelect/ImageCountSelect";
+import { Select } from "../Select/Select";
 
 export function App() {
     const [themeToggle, setThemeToggle] = useState<string>(() => {
         return localStorage.getItem("theme") || "light";
     });
     const [modelSelect, setModelSelect] = useState<string>("");
-    const [countSelect, setCountSelect] = useState<number>(0);
+    const [countSelect, setCountSelect] = useState<string>("0");
     const [sizeSelect, setSizeSelect] = useState<string>("");
     const [imgUrls, setImgUrls] = useState<string[]>([]);
     const [prompt, setPrompt] = useState<string>("");
@@ -169,22 +166,50 @@ export function App() {
 
                     {/* prompt action/buttons */}
                     <div className={styles.promptActions}>
-                        <ModelsSelect
-                            modelSelect={modelSelect}
-                            setModelSelect={setModelSelect}
+                        <Select
+                            setSelect={setModelSelect}
+                            value={modelSelect}
                             selectName={"modelSelect"}
+                            data={[
+                                { value: "", title: "Выберети модель" },
+                                {
+                                    value: "black-forest-labs/FLUX.1-schnell",
+                                    title: "FLUX.1-schnell",
+                                },
+                                {
+                                    value: "black-forest-labs/FLUX.1-dev",
+                                    title: "FLUX.1-dev",
+                                },
+                                {
+                                    value: "stabilityai/stable-diffusion-xl-base-1.0",
+                                    title: "D-XL 1.0-base Model Card",
+                                },
+                            ]}
                         />
 
-                        <ImageCountSelect
-                            countSelect={countSelect}
-                            setCountSelect={setCountSelect}
+                        <Select
+                            setSelect={setCountSelect}
+                            value={countSelect}
                             selectName={"countSelect"}
+                            data={[
+                                { value: "0", title: "Колличество" },
+                                { value: "1", title: "1 картинка" },
+                                { value: "2", title: "2 картинки" },
+                                { value: "3", title: "3 картинки" },
+                                { value: "4", title: "4 картинки" },
+                            ]}
                         />
 
-                        <WrapperSelect
-                            sizeSelect={sizeSelect}
-                            setSizeSelect={setSizeSelect}
+                        <Select
+                            setSelect={setSizeSelect}
+                            value={sizeSelect}
                             selectName={"sizeSelect"}
+                            data={[
+                                { value: "", title: "Размер" },
+                                { value: "1/1", title: "Квадрат (1/1)" },
+                                { value: "16/9", title: "Пеизаж (16/9)" },
+                                { value: "9/16", title: "Портрет (9/16)" },
+                            ]}
                         />
 
                         <button type="submit" className={styles.generateBtn}>
