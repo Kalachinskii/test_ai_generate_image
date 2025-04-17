@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./App.module.css";
-import { Image } from "./components/Image/Image";
+import { Image } from "../Image/Image";
 
 export function App() {
     const examlePrompts = [
