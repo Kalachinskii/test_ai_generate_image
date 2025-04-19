@@ -3,7 +3,8 @@ import styles from "./Image.module.css";
 
 interface ImgUrl {
     imgUrl: string;
-    loading: boolean;
+    loading?: boolean;
+    errors?: boolean;
 }
 
 export function Image({ imgUrl, loading }: ImgUrl) {
@@ -11,7 +12,12 @@ export function Image({ imgUrl, loading }: ImgUrl) {
         <>
             {/* ${styles.loading} */}
             {/* ${styles.error} */}
-            <div className={`${styles.imgCard} ${loading && styles.loading}`}>
+            <div
+                className={`
+                    ${styles.imgCard} 
+                    ${loading && styles.loading} 
+                    `}
+            >
                 <div className={`${styles.statusContainer} ${styles.logoIcon}`}>
                     <Spinner />
                     <i className="fa-solid fa-triangle-exclamation"></i>

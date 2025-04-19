@@ -18,6 +18,7 @@ export function App() {
     const [imgUrls, setImgUrls] = useState<string[]>([]);
     const [prompt, setPrompt] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
+    // const [error, setErorr] = useState<boolean>(false);
 
     // рандомный промт запрос
     const generatePrompt = () => {
@@ -31,7 +32,24 @@ export function App() {
         const formData = new FormData(e.currentTarget);
         const formProps = Object.fromEntries(formData) as unknown;
         if (formProps instanceof Object) {
-            generateImage(formProps);
+            // если текст русский
+            const isRussian = (prompt: string) => /[а-яёА-ЯЁ]/.test(prompt);
+            if (isRussian(prompt)) {
+                // переведи
+                async function translate(text: string) {
+                    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(
+                        text
+                    )}&langpair=ru|en`;
+                    const response = await fetch(url);
+                    const data = await response.json();
+                    return data.responseData.translatedText;
+                }
+                translate(prompt).then((res) => setPrompt(res));
+                generateImage(formProps);
+            } else {
+                generateImage(formProps);
+            }
+            // generateImage(formProps);
         }
     };
 
@@ -39,7 +57,6 @@ export function App() {
         const MODEL_URL = `https://api-inference.huggingface.co/models/${modelSelect}`;
         const { width, height } = getImageDimensions(props.sizeSelect);
         setLoading(true);
-
         const imagePromises = Array.from(
             { length: props.countSelect },
             async (_) => {
@@ -77,6 +94,7 @@ export function App() {
                     setImgUrls((prevUrls) => [...prevUrls, imageUrl]);
                 } catch (error) {
                     console.error("Error generating image:", error);
+                    // setErorr(true);
                 }
             }
         );
