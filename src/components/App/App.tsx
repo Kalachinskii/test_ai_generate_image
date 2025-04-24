@@ -56,6 +56,7 @@ export function App() {
     const generateImage = async ({ ...props }) => {
         const MODEL_URL = `https://api-inference.huggingface.co/models/${modelSelect}`;
         const { width, height } = getImageDimensions(props.sizeSelect);
+        const VITE_API_KEY = import.meta.env.VITE_API_KEY;
         setLoading(true);
         const imagePromises = Array.from(
             { length: props.countSelect },
@@ -63,9 +64,7 @@ export function App() {
                 try {
                     const response = await fetch(MODEL_URL, {
                         headers: {
-                            Authorization: `Bearer ${
-                                import.meta.env.VITE_API_KEY
-                            }`,
+                            Authorization: `Bearer ${VITE_API_KEY}`,
                             "Content-Type": "application/json",
                         },
                         method: "POST",
