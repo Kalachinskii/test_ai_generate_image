@@ -13201,7 +13201,7 @@ function Dy() {
         [I, Ml] = Lt.useState([]),
         [D, T] = Lt.useState(""),
         [R, tl] = Lt.useState(!1),
-        VITE_API_KEY = "__VITE_API_KEY__",
+        VITE_API_KEY = "VITE_API_KEY",
         Dl = () => {
             const sl = dd[Math.floor(Math.random() * dd.length)];
             T(sl);
