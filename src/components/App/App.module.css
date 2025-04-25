@@ -127,3 +127,11 @@ body.darkTheme .container {
     margin-top: 30px;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
 }
+
+@media (max-width: 888px) {
+    .promptActions {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+}
