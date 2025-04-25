@@ -68,3 +68,16 @@
 .themeToggle:hover .sun {
     color: #463cff;
 }
+
+@media (max-width: 480px) {
+    .themeToggle {
+        height: 43px;
+        width: 53px;
+    }
+}
+@media (max-width: 417px) {
+    .themeToggle {
+        height: 43px;
+        width: 60px;
+    }
+}

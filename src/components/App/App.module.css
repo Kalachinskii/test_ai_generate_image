@@ -135,3 +135,8 @@ body.darkTheme .container {
         width: 100%;
     }
 }
+@media (max-width: 445px) {
+    .promptBtn {
+        opacity: 0.3;
+    }
+}
