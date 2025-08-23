@@ -48,7 +48,7 @@
 1.  **Склонируйте репозиторий:**
 
     ```bash
-    git clone https://github.com/Kalachinskii/test_ai_generate_image.git; cd test_ai_generate_image
+    git clone https://github.com/Kalachinskii/test_ai_generate_image.git
     ```
 
 2.  **Перейдите в созданную папку:**
