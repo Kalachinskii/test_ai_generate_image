@@ -1,54 +1,78 @@
-# React + TypeScript + Vite
+# Text-image-AI-generate
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Продвинутое веб-приложение для генерации изображений через искусственный интеллект. Поддерживает несколько моделей, автоматический перевод запросов и устойчив к ошибкам API.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Оглавление
 
-## Expanding the ESLint configuration
+- [Демо](#демо)
+- [Функциональность](#функциональность)
+- [Уникальные особенности](#уникальные-особенности)
+- [Стек технологий](#стек-технологий)
+- [Установка и запуск](#установка-и-запуск)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Демо
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+**[👉 Протестировать генератор изображений](https://kalachinskii.github.io/test_ai_generate_image/)**
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Функциональность
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+- Интеграция с **MyMemory Translation API** для перевода промптов
+- Асинхронная обработка с **Promise.allSettled** для устойчивости к ошибкам
+- Динамический выбор моделей через **Hugging Face API**
+- Кастомизация параметров генерации (размер, количество изображений)
+
+## Уникальные особенности
+
+- **Поддержка нескольких AI-моделей:** Выбор из различных моделей генерации (Hugging Face).
+- **Автоматический перевод запросов:** Интеллектуальное определение и перевод русскоязычных промптов на английский для корректной работы моделей.
+- **Устойчивость к ошибкам:** Использование `Promise.allSettled` для обработки запросов, даже если часть из них завершится ошибкой.
+- **Гибкие настройки:** Выбор размера, количества изображений и модели.
+- **Адаптивный интерфейс:** Оптимизирован для всех устройств.
+
+## Стек технологий
+
+- **Фронтенд:** React, TypeScript, Vite
+- **HTTP-клиенты:** Fetch API
+- **Внешние API:**
+  - Hugging Face Inference API (генерация изображений)
+  - MyMemory Translation API (перевод промптов)
+- **Сборка и деплой:** GitHub Actions (для автоматизации процесса)
+- **Хостинг:** GitHub Pages (для размещения статичных файлов)
+
+## Установка и запуск
+
+1.  **Склонируйте репозиторий:**
+
+    ```bash
+    git clone https://github.com/Kalachinskii/test_ai_generate_image.git; cd test_ai_generate_image
+    ```
+
+2.  **Перейдите в созданную папку:**
+
+    ```bash
+    cd test_ai_generate_image
+    ```
+
+3.  **Установите зависимости:**
+
+    ```bash
+    npm install
+    ```
+
+    _(Этот шаг загрузит все необходимые библиотеки)_
+
+4.  **Запустите сервер для разработки:**
+
+    ```bash
+    npm run dev
+    ```
+
+    _(Команда запустит приложение в режиме разработки. Оно откроется по адресу [http://localhost:5173](http://localhost:5173))_
+
+5.  **Откройте браузер и перейдите по адресу из предыдущего шага.**
+
+    _(Если браузер не открылся автоматически, скопируйте адрес из терминала и вставьте в адресную строку браузера вручную)_
