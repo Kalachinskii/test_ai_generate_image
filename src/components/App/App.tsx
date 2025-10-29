@@ -53,8 +53,12 @@ export function App() {
         }
     };
 
+    // https://api-inference.huggingface.co/  - 01/11/2025 перестанет работать
+    // const MODEL_URL = `https://api-inference.huggingface.co/models/${modelSelect}`;
+    
+    // https://router.huggingface.co/hf-inference/  - новый
     const generateImage = async ({ ...props }) => {
-        const MODEL_URL = `https://api-inference.huggingface.co/models/${modelSelect}`;
+        const MODEL_URL = `https://router.huggingface.co/hf-inference/${modelSelect}`;
         const { width, height } = getImageDimensions(props.sizeSelect);
         const VITE_API_KEY = import.meta.env.VITE_API_KEY;
         setLoading(true);
