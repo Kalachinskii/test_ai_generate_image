@@ -77,11 +77,15 @@ export function App() {
                             parameters: {
                                 width,
                                 height,
+                                // Улучшение качества:
+                                num_inference_steps: 20,
+                                guidance_scale: 7.5,
+                                negative_prompt: "bad quality, blurry"
                             },
-                            options: {
-                                wait_for_model: true,
-                                user_cache: false,
-                            },
+                            // options: {
+                            //     wait_for_model: true,
+                            //     user_cache: false,
+                            // },
                         }),
                     });
 
